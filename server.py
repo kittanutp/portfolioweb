@@ -1,5 +1,3 @@
-from email import message
-from lib2to3.pgen2.token import NEWLINE
 from flask import Flask, render_template, request, redirect
 import csv
 app = Flask(__name__)
@@ -19,12 +17,12 @@ def contact_me():
 
 
 def write_database(data):
-    with open('./database.csv', mode='a', newline='\n') as csvfile:
+    with open('/home/MaxPongji/portfolioweb/database.csv', mode='a', newline='\n') as csvfile:
         name = data['name']
         email = data['email']
         subject = data['subject']
-        message = data['message']
+        messages = data['message']
         csvwriter = csv.writer(csvfile, delimiter=',',
                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        csvwriter.writerow([name, email, subject, message])
+        csvwriter.writerow([name, email, subject, messages])
         return 'finish'
